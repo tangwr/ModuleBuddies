@@ -97,9 +97,9 @@
     <script src="/signalr/hubs"></script>
     <!--
     <script src="ckeditor/ckeditor.js" type="text/javascript"></script> -->
-    <!-- <script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js" ></script> -->
+    <script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js" ></script> 
     <!-- Original Script -->
-   
+   <!--
      <script type="text/javascript">
 
         
@@ -116,7 +116,7 @@
             //document.getElementById("myText").value = text;      
 
             //myText.ClientID  //myText.Name
-            document.getElementById('<%=myText.ClientID%>').value = text;
+            document.getElementById('<//%=myText.ClientID%>').value = text;
             //document.getElementById('ContentPlaceHolder1_myText').value = text;
             //CKEDITOR.instances.myText.setData(text);
         };
@@ -143,7 +143,7 @@
                 //hub.server.typeText($.connection.hub.id, $('#myText').val());
 
                 //myText.ClientID  //myText.Name
-                hub.server.typeText($('#<%=myText.ClientID%>').val(), docId);
+                hub.server.typeText($('#<//%=myText.ClientID%>').val(), docId);
                 //hub.server.typeText($('#ContentPlaceHolder1_myText').val(), docId);
                 //hub.server.typeText(instance.getData());
               });
@@ -153,8 +153,79 @@
 
       
     </script> 
+    -->
    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            tinymce.init({
+                selector: "textarea",
+                fontsize_formats: "8pt 9pt 10pt 11pt 12pt 26pt 36pt",
+                theme: 'modern',
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor colorpicker textpattern imagetools"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview | forecolor backcolor emoticons | fontselect | fontsizeselect",
+                //auto_focus: "<//%=myText.ClientID%>",
+               
+                setup: function (editor) {
 
+
+                    editor.on('init', function () {
+                        this.execCommand("fontName", false, "arial");
+                        this.execCommand("fontSize", false, "14px");
+                    });
+                    // Create the hub
+                    var hub = $.connection.documentHub;
+
+                    // Create a function that the hub can call to draw a text
+                    hub.client.textTyped = function (text) {
+
+                        tinyMCE.get('<%=myText.ClientID%>').setContent(text);
+                      
+                       
+                    };
+
+                    // Start the connection
+                   
+                    
+
+                    editor.on('keyup', function (e) {
+                        // Revalidate the hobbies field
+                        
+                        $.connection.hub.start().done(function () {
+
+                            // Register the key event so we can allow users to type 
+                            var url = window.location.href;
+                            var index = url.indexOf("&docId=");
+                            var uidIndex = url.indexOf("&userId=");
+
+                            var docId = url.substring(index + 7, uidIndex);
+                            var uid = url.substring(uidIndex + 8);
+
+                           hub.server.registerChatGroup(docId, uid);
+
+                           
+
+                           tinyMCE.activeEditor.getContent();
+                           tinyMCE.activeEditor.getContent({ format: 'raw' });
+                           hub.server.typeText(tinyMCE.get('<%=myText.ClientID%>').getContent(), docId);
+                           
+                        });
+                    });
+                }
+            });
+
+            
+        });
+        
+        
+      
+
+    </script>
      
 
 </asp:Content>
