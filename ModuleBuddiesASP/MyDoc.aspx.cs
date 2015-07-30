@@ -17,6 +17,13 @@ namespace ModuleBuddiesASP
         {
            string userID = userInfo.getUserID();
 
+
+           HelperClasses.Token myToken = new HelperClasses.Token();
+
+           if (myToken.getToken() == "")
+           {
+               Response.Redirect("Home.aspx");
+           }
             
                 try
                 {
