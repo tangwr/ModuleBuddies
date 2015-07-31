@@ -98,12 +98,35 @@ namespace ModuleBuddiesASP
 
             conn.Open();
 
+            SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
+            DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT memberID, memberName FROM Documents where docId='" + docId + "'");
+
+
+           
+          
             foreach (int i in friendListBox.GetSelectedIndices())
             {
-                string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES('"
-                    + docName + "','" + friendListBox.Items[i].Value + "','" + friendListBox.Items[i].Text + "','" + docId + "');";
-                SqlCommand cmdFriend = new SqlCommand(insertFriend, conn);
-                cmdFriend.ExecuteNonQuery();
+                Boolean notFriend = true;
+
+                foreach (DataRow _DataRow in _DataTable.Rows)
+                {
+                    if (_DataRow["memberID"].ToString() == friendListBox.Items[i].Value)
+                    {
+                        notFriend = false;
+                        break;
+                    }
+
+                }
+                if (notFriend == true)
+                {
+                    string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES('"
+                        + docName + "','" + friendListBox.Items[i].Value + "','" + friendListBox.Items[i].Text + "','" + docId + "');";
+                    SqlCommand cmdFriend = new SqlCommand(insertFriend, conn);
+                    cmdFriend.ExecuteNonQuery();
+                }
+
+                
+
             }
 
             usersListBox.DataBind();
@@ -135,6 +158,8 @@ namespace ModuleBuddiesASP
             }
 
             usersListBox.DataBind();
+
+            Response.Redirect(url);
         }
 
         protected void rename_Click(object sender, EventArgs e)

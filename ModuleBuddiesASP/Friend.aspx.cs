@@ -197,7 +197,7 @@ namespace ModuleBuddiesASP
                 Boolean notFriend = true;
 
                 SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
-                DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT friendID, friendName FROM friendList");
+                DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT friendID, friendName FROM friendList where userId='" + userID + "'");
                 String htmlCode = String.Empty;
                 String clashName = "";
                 foreach (DataRow _DataRow in _DataTable.Rows)

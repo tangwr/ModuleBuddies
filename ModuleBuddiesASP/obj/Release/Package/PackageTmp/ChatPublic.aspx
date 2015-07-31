@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="ChatPublic.aspx.cs" Inherits="ModuleBuddiesASP.ChatPublic" %>
+﻿<%@ Page Title="Public Chat" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="ChatPublic.aspx.cs" Inherits="ModuleBuddiesASP.ChatPublic" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

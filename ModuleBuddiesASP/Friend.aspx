@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="Friend.aspx.cs" Inherits="ModuleBuddiesASP.Friend" %>
+﻿<%@ Page Title="Friend" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="Friend.aspx.cs" Inherits="ModuleBuddiesASP.Friend" %>
 <%@ MasterType VirtualPath="~/AdminLTE.Master"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -85,7 +85,7 @@
                         <asp:Label ID="idLabel" runat="server" Text="" Visible="false"></asp:Label>
                         <br />
                          <asp:Button ID="editNameButton" runat="server" Text="Change" class="btn btn-primary pull-left" OnClick="editNameButton_Click" />
-                         <asp:Button ID="Button1" runat="server" Text="Delete" class="btn btn-default pull-right" OnClick="deleteButton_Click"/>
+                       
                     </div>
                             </div>
                         </div>

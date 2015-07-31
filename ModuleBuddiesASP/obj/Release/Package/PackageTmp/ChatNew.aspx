@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="ChatNew.aspx.cs" Inherits="ModuleBuddiesASP.ChatNew" %>
+﻿<%@ Page Title="New Chat" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="ChatNew.aspx.cs" Inherits="ModuleBuddiesASP.ChatNew" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -57,7 +57,8 @@
                                     <input id="groupChatTextBox" type="text" class="form-control" runat="server" placeholder="Group Chat's Name ..."/>  
                                      <asp:Label ID="warningLabel1" runat="server" Text="Please Enter Group Name" ForeColor="Red" Visible="false"></asp:Label>
                                     <br />
-                                    <asp:Label ID="friendListLabel" runat="server" Text="Friend List"></asp:Label>
+                                    <asp:Label ID="friendListLabel" runat="server" Text="Add Friend"></asp:Label>
+                                       <asp:Label ID="Label22" runat="server" Text=" (Press 'Ctrl' + 'click' to select one or more friends)"></asp:Label>
                                     <asp:ListBox class="form-group form-control"  ID="friendListBox" runat="server" Height="240px" SelectionMode="Multiple"  DataSourceID="SqlDataSource1" DataTextField="friendName" DataValueField="friendID"></asp:ListBox>
                                     
                                      <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ModulesDBConnectionString %>" SelectCommand="SELECT [friendID], [friendName] FROM [FriendList] WHERE ([userID] = @userID) ORDER BY [friendName]">

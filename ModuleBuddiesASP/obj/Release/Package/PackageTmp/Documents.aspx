@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="Documents.aspx.cs" Inherits="ModuleBuddiesASP.Documents" %>
+﻿<%@ Page Title="Documents" Language="C#" MasterPageFile="~/AdminLTE.Master" AutoEventWireup="true" CodeBehind="Documents.aspx.cs" Inherits="ModuleBuddiesASP.Documents" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -79,7 +79,8 @@
                                                 <input id="docTextBox" type="text" class="form-control" runat="server" placeholder="Document's Name ..."/>   
                                             </div> 
                                             <div class="box-header">
-                                                <h3 class="box-title">Friend List</h3>
+                                                <h3 class="box-title">Add Friend</h3>
+                                                <asp:Label ID="Label2" runat="server" Text=" (Press 'Ctrl' + 'click' to select one or more friends)"></asp:Label>
                                             </div><!-- /.box-header -->
 
                                             <div class="box-body" >
