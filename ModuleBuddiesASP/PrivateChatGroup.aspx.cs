@@ -48,6 +48,7 @@ namespace ModuleBuddiesASP
             int uidIndex = url.IndexOf("&uid=");
            
             string groupName = url.Substring(gidIndex, uidIndex - gidIndex);
+            groupName = groupName.Replace("+", " ");
             string uniqueID = url.Substring(uidIndex+5);
 
             Boolean notFriend = true;
@@ -87,7 +88,13 @@ namespace ModuleBuddiesASP
             }
 
             usersListBox.DataBind();
-            Response.Redirect(url);
+
+            usersListBox.DataBind();
+
+            string newUrl = url.Substring(0, gidIndex) +
+               groupName.Replace("+", "%20") + "&uid=" + uniqueID;
+
+            Response.Redirect(newUrl);
             
         }
         protected void deleteButton_Click(object sender, EventArgs e)
@@ -116,7 +123,11 @@ namespace ModuleBuddiesASP
             }
 
             usersListBox.DataBind();
-            Response.Redirect(url);
+
+            string newUrl = url.Substring(0, gidIndex)  + 
+                groupName.Replace("+", "%20") + "&uid=" + uniqueID;
+
+            Response.Redirect(newUrl);
         }
 
      

@@ -89,7 +89,7 @@ namespace ModuleBuddiesASP
             string docName = url.Substring(docNameIndex, docIdIndex - docNameIndex);
             string docId = url.Substring(docIdIndex + 7, userIdIndex - (docIdIndex + 7));
 
-         
+            docName = docName.Replace("+", " ");
             
 
             SqlConnection conn = new SqlConnection();
@@ -130,10 +130,17 @@ namespace ModuleBuddiesASP
             }
 
             usersListBox.DataBind();
+
+            string newUrl = url.Substring(0, docNameIndex) +
+               docName.Replace("+", "%20") + "&docId=" + docId +"&userId=" + userID;
+
+            Response.Redirect(newUrl);
+            
         }
         protected void deleteButton_Click(object sender, EventArgs e)
         {
             string url = Request.Url.AbsoluteUri;
+            string userID = userInfo.getUserID();
 
             int docNameIndex = url.IndexOf("?docName=") + 9;
             int docIdIndex = url.IndexOf("&docId=");
@@ -141,6 +148,7 @@ namespace ModuleBuddiesASP
 
             string strDocName = url.Substring(docNameIndex, docIdIndex - docNameIndex);
             string strDocID = url.Substring(docIdIndex + 7, userIdIndex - (docIdIndex + 7));
+            strDocName = strDocName.Replace("+", " ");
 
             SqlConnection conn = new SqlConnection();
 
@@ -159,7 +167,10 @@ namespace ModuleBuddiesASP
 
             usersListBox.DataBind();
 
-            Response.Redirect(url);
+            string newUrl = url.Substring(0, docNameIndex) +
+               strDocName.Replace("+", "%20") + "&docId=" + strDocID + "&userId=" + userID;
+
+            Response.Redirect(newUrl);
         }
 
         protected void rename_Click(object sender, EventArgs e)
