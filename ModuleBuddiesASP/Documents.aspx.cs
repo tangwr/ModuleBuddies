@@ -76,21 +76,21 @@ namespace ModuleBuddiesASP
 
             conn.Open();
 
-            string insertCreater = "INSERT into Documents(docName, memberID, memberName, docId) VALUES('"
+            string insertCreater = "INSERT into Documents(docName, memberID, memberName, docId) VALUES(N'"
                     + docTextBox.Value + "','" + userID + "','" + userName + "','" + UniqueID + "');";
             SqlCommand cmdCreater = new SqlCommand(insertCreater, conn);
             cmdCreater.ExecuteNonQuery();
 
             foreach(int i in friendListBox.GetSelectedIndices())
             {
-                string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES('"
+                string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES(N'"
                     + docTextBox.Value + "','" + friendListBox.Items[i].Value + "','" + friendListBox.Items[i].Text + "','" + UniqueID + "');";
                 SqlCommand cmdFriend = new SqlCommand(insertFriend, conn);
                 cmdFriend.ExecuteNonQuery();
             }
 
             string insertDoc = "INSERT into myDoc(docID, docName) VALUES('"
-                    + UniqueID + "','" + docTextBox.Value + "');";
+                    + UniqueID + "',N'" + docTextBox.Value + "');";
             SqlCommand cmdDoc = new SqlCommand(insertDoc, conn);
             cmdDoc.ExecuteNonQuery();
 

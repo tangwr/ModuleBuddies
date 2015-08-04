@@ -24,7 +24,8 @@ namespace ModuleBuddiesASP
                 int uidIndex = url.IndexOf("&uid=");
                 string title = url.Substring(index + 5, uidIndex - (index + 5));
                 title = title.Replace("%20", " ");
-                publicChatLabel.Text = title;
+                //publicChatLabel.Text = title;
+                publicChatLabel.Text = Server.UrlDecode(Request.QueryString["gid"]);
             }
         }
     }

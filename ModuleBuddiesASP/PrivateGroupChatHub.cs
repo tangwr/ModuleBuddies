@@ -53,7 +53,7 @@ namespace ModuleBuddiesASP
             /* Add Message to DB */
 
             SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
-            _SqlWrapper.executeNonQuery(@"INSERT INTO PrivateChatData (UniqueID, groupName, msg, timestamp, userInfo) VALUES ('" + uid + "', '" + groupName + "', '" + msg + "', '" + datetime + "', '" + userInfo + "')");
+            _SqlWrapper.executeNonQuery(@"INSERT INTO PrivateChatData (UniqueID, groupName, msg, timestamp, userInfo) VALUES ('" + uid + "', '" + groupName + "', N'" + msg + "', '" + datetime + "', '" + userInfo + "')");
         }
 
         public void RegisterChatGroup(String uid)

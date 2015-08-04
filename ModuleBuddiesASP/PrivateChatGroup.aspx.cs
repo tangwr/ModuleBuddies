@@ -31,7 +31,9 @@ namespace ModuleBuddiesASP
                     string title = url.Substring(index + 5, uidIndex - (index + 5));
                     title = title.Replace("%20", " ");
                     publicChatLabel.Text = title;
-                    docTitleLabel.Text = title;
+                    //docTitleLabel.Text = title;
+                    publicChatLabel.Text = Server.UrlDecode(Request.QueryString["gid"]);
+                    docTitleLabel.Text = Server.UrlDecode(Request.QueryString["gid"]);
                 }
                 catch { }
             }
@@ -48,13 +50,15 @@ namespace ModuleBuddiesASP
             int uidIndex = url.IndexOf("&uid=");
            
             string groupName = url.Substring(gidIndex, uidIndex - gidIndex);
-            groupName = groupName.Replace("+", " ");
+            //groupName = groupName.Replace("+", " ");
+            groupName = Server.UrlDecode(Request.QueryString["gid"]);
+
             string uniqueID = url.Substring(uidIndex+5);
 
             Boolean notFriend = true;
 
             SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
-            DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT uniqueID, memberID FROM PrivateChatList");
+            DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT memberID FROM PrivateChatList WHERE uniqueID='" + uniqueID + "'");
             String htmlCode = String.Empty;
            
             
@@ -79,7 +83,7 @@ namespace ModuleBuddiesASP
                 if (notFriend == true)
                 {
                     string insertFriend = "INSERT into PrivateChatList(UniqueID, GroupName, MemberName, MemberID) VALUES('"
-                        + uniqueID + "','" + groupName + "','" + friendListBox.Items[i].Text + "','" + friendListBox.Items[i].Value + "');";
+                        + uniqueID + "',N'" + groupName + "','" + friendListBox.Items[i].Text + "','" + friendListBox.Items[i].Value + "');";
                     SqlCommand cmdFriend = new SqlCommand(insertFriend, conn);
                     cmdFriend.ExecuteNonQuery();
                 }
@@ -89,10 +93,10 @@ namespace ModuleBuddiesASP
 
             usersListBox.DataBind();
 
-            usersListBox.DataBind();
+           
 
             string newUrl = url.Substring(0, gidIndex) +
-               groupName.Replace("+", "%20") + "&uid=" + uniqueID;
+               groupName + "&uid=" + uniqueID;
 
             Response.Redirect(newUrl);
             

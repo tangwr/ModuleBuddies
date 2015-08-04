@@ -36,9 +36,10 @@ namespace ModuleBuddiesASP
                     string strDocName = url.Substring(docNameIndex, docIdIndex - docNameIndex);
                     string strDocID = url.Substring(docIdIndex + 7, userIdIndex - (docIdIndex + 7));
                   
-                    docTitleLabel.Text = strDocName.Replace("%20", " ");
+                    //docTitleLabel.Text = strDocName.Replace("%20", " ");
+                    docTitleLabel.Text = Server.UrlDecode(Request.QueryString["docName"]);
                     //renameTextBox.Value = strDocName;
-
+                    
                     SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
                     DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT memberID FROM documents WHERE docId = '" + strDocID + "'");
 
@@ -89,8 +90,8 @@ namespace ModuleBuddiesASP
             string docName = url.Substring(docNameIndex, docIdIndex - docNameIndex);
             string docId = url.Substring(docIdIndex + 7, userIdIndex - (docIdIndex + 7));
 
-            docName = docName.Replace("+", " ");
-            
+            //docName = docName.Replace("+", " ");
+            docName = Server.UrlDecode(Request.QueryString["docName"]);
 
             SqlConnection conn = new SqlConnection();
 
@@ -119,7 +120,7 @@ namespace ModuleBuddiesASP
                 }
                 if (notFriend == true)
                 {
-                    string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES('"
+                    string insertFriend = "INSERT into Documents(docName, memberID, memberName, docId) VALUES(N'"
                         + docName + "','" + friendListBox.Items[i].Value + "','" + friendListBox.Items[i].Text + "','" + docId + "');";
                     SqlCommand cmdFriend = new SqlCommand(insertFriend, conn);
                     cmdFriend.ExecuteNonQuery();
@@ -132,7 +133,7 @@ namespace ModuleBuddiesASP
             usersListBox.DataBind();
 
             string newUrl = url.Substring(0, docNameIndex) +
-               docName.Replace("+", "%20") + "&docId=" + docId +"&userId=" + userID;
+               docName + "&docId=" + docId +"&userId=" + userID;
 
             Response.Redirect(newUrl);
             
@@ -192,14 +193,14 @@ namespace ModuleBuddiesASP
 
                 conn.Open();
 
-                string update = "UPDATE myDoc SET docName ='" + renameTextBox.Value + "' WHERE docId='"
+                string update = "UPDATE myDoc SET docName =N'" + renameTextBox.Value + "' WHERE docId='"
                     + docId + "';";
 
                 SqlCommand updateCmd = new SqlCommand(update, conn);
 
                 updateCmd.ExecuteNonQuery();
 
-                string update1 = "UPDATE documents SET docName ='" + renameTextBox.Value + "' WHERE docId='"
+                string update1 = "UPDATE documents SET docName =N'" + renameTextBox.Value + "' WHERE docId='"
                     + docId + "';";
 
                 SqlCommand updateCmd1 = new SqlCommand(update1, conn);

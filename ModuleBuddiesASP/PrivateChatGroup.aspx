@@ -72,7 +72,7 @@
                             </h3>    -->
                         </div><!-- /.box-header -->
 
-                        <div class="box-body">
+                        <div class="box-body　direct-chat direct-chat-primary">
                             <!-- Conversations are loaded here -->
                             <div id="chatBody" class="direct-chat-messages">
                
