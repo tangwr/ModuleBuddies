@@ -70,6 +70,7 @@ namespace ModuleBuddiesASP
                 conn.Open();
 
                 string delete = "DELETE FROM IndividualChatList  WHERE friendID='" + uid + "' AND UserID='" + userID + "';";
+                delete += "DELETE FROM IndividualChatList  WHERE friendID='" + userID + "' AND UserID='" + uid + "';";
 
                 SqlCommand deleteCmd = new SqlCommand(delete, conn);
 

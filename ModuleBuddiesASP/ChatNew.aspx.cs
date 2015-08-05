@@ -81,6 +81,7 @@ namespace ModuleBuddiesASP
             string friendID = friendListBox2.SelectedItem.Value;
             string friendName = friendListBox2.SelectedItem.Text;
             Boolean notFriend = true;
+            Boolean notFriend1 = true;
             /*
             string cid = "";
             if (String.Compare(userID, friendID) < 0)
@@ -94,7 +95,7 @@ namespace ModuleBuddiesASP
             */
 
             SqlWrapper _SqlWrapper = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
-            DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT userID, friendID FROM individualChatList");
+            DataTable _DataTable = _SqlWrapper.executeQuery(@"SELECT friendID FROM individualChatList where userID='" + userID + "'");
             String htmlCode = String.Empty;
 
             foreach (DataRow _DataRow in _DataTable.Rows)
@@ -106,14 +107,46 @@ namespace ModuleBuddiesASP
                 }
 
             }
+
+            SqlWrapper _SqlWrapper1 = new SqlWrapper(@"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;");
+            DataTable _DataTable1 = _SqlWrapper1.executeQuery(@"SELECT userID FROM individualChatList where friendID='" + friendID + "'");
+            foreach (DataRow _DataRow1 in _DataTable1.Rows)
+            {
+                if (_DataRow1["userID"].ToString() == userID)
+                {
+                    notFriend1 = false;
+                    break;
+                }
+
+            }
             if (notFriend == true)
             {
                 string connString = @"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
 
                 string insert = "INSERT INTO IndividualChatList(userID, userName, friendID, friendName) VALUES('"
                     + userID + "','" + userName + "','" + friendID + "','" + friendName + "');";
-
+                /*
                 insert += "INSERT INTO IndividualChatList(userID, userName, friendID, friendName) VALUES('"
+                    + friendID + "','" + friendName + "','" + userID + "','" + userName + "');";
+                */
+                using (SqlConnection con = new SqlConnection(connString))
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = insert;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            if (notFriend1 == true)
+            {
+                string connString = @"Server=tcp:yq6ulqknjf.database.windows.net,1433;Database=ModulesDB;User ID=rstyle@yq6ulqknjf;Password=Zxcv2345;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+                /*
+                string insert = "INSERT INTO IndividualChatList(userID, userName, friendID, friendName) VALUES('"
+                    + userID + "','" + userName + "','" + friendID + "','" + friendName + "');";
+                */
+                string insert = "INSERT INTO IndividualChatList(userID, userName, friendID, friendName) VALUES('"
                     + friendID + "','" + friendName + "','" + userID + "','" + userName + "');";
 
                 using (SqlConnection con = new SqlConnection(connString))
@@ -122,6 +155,7 @@ namespace ModuleBuddiesASP
                     cmd.CommandText = insert;
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    con.Close();
                 }
             }
 

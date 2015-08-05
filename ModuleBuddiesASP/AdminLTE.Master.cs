@@ -82,7 +82,8 @@ namespace ModuleBuddiesASP
             if(loginLabel.Text.Equals("Login"))
             {
                 //isLoginClick = true;           
-                Response.Redirect(url + Request.UrlReferrer);
+                //Response.Redirect(url + Request.UrlReferrer);
+                Response.Redirect("https://ivle.nus.edu.sg/api/login/?apikey=JinwNKRnSNSXfoTIhY1X0&url=http://modulebuddies.azurewebsites.net/Home");
             }
             else
             {          
