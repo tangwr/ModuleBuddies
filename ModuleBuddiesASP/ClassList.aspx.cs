@@ -100,20 +100,20 @@ namespace ModuleBuddiesASP
 
         public String moduleFriendList()
         {
-            HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
-            HelperClasses.CourseID course = new HelperClasses.CourseID();
-            HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
+            //HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
+            //HelperClasses.CourseID course = new HelperClasses.CourseID();
+            //HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
 
             List<String> ListModCode = new List<String>();
             List<String> ListModName = new List<String>();
-            List<String> ListCourseSem = new List<String>();
-            List<String> ListAcadYear = new List<String>();
+            //List<String> ListCourseSem = new List<String>();
+            //List<String> ListAcadYear = new List<String>();
 
             string htmlText = "";
             ListModCode = modInfo.getModInfo("CourseCode");
             ListModName = modInfo.getModInfo("CourseName");
-            ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
-            ListAcadYear = modInfo.getModInfo("CourseAcadYear");
+            //ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
+            //ListAcadYear = modInfo.getModInfo("CourseAcadYear");
 
             //for (int i = 0; i < ListModCode.Count; i++)
             for (int i = 0; i < 0; i++)
@@ -148,18 +148,18 @@ namespace ModuleBuddiesASP
 
         public List<String> getNameList(int i)
         {
-            HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
-            HelperClasses.CourseID course = new HelperClasses.CourseID();
-            HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
+            //HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
+            //HelperClasses.CourseID course = new HelperClasses.CourseID();
+            //HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
 
             List<String> ListModCode = new List<String>();
-            List<String> ListModName = new List<String>();
+            //List<String> ListModName = new List<String>();
             List<String> ListCourseSem = new List<String>();
             List<String> ListAcadYear = new List<String>();
 
 
             ListModCode = modInfo.getModInfo("CourseCode");
-            ListModName = modInfo.getModInfo("CourseName");
+            //ListModName = modInfo.getModInfo("CourseName");
             ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
             ListAcadYear = modInfo.getModInfo("CourseAcadYear");
 
@@ -174,18 +174,18 @@ namespace ModuleBuddiesASP
 
         public List<String> getStudIdList(int i)
         {
-            HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
-            HelperClasses.CourseID course = new HelperClasses.CourseID();
-            HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
+            //HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
+            //HelperClasses.CourseID course = new HelperClasses.CourseID();
+            //HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
 
             List<String> ListModCode = new List<String>();
-            List<String> ListModName = new List<String>();
+            //List<String> ListModName = new List<String>();
             List<String> ListCourseSem = new List<String>();
             List<String> ListAcadYear = new List<String>();
 
 
             ListModCode = modInfo.getModInfo("CourseCode");
-            ListModName = modInfo.getModInfo("CourseName");
+            //ListModName = modInfo.getModInfo("CourseName");
             ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
             ListAcadYear = modInfo.getModInfo("CourseAcadYear");
 
