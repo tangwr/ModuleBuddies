@@ -24,7 +24,7 @@ namespace ModuleBuddiesASP.HelperClasses
 
 
             // Set the 'Timeout' property in Milliseconds.
-            myWebRequest.Timeout = 10000;
+            myWebRequest.Timeout = 100000;
 
             // This request will throw a WebException if it reaches the timeout limit before it is able to fetch the resource.
             WebResponse myWebResponse = myWebRequest.GetResponse();

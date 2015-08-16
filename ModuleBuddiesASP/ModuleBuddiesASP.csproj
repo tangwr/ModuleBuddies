@@ -1080,6 +1080,8 @@
     <Content Include="AdminLTE\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="AdminLTE\README.md" />
     <Content Include="AdminLTE.Master" />
+    <None Include="Properties\PublishProfiles\ModuleBuddies %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ModuleBuddies %283%29.pubxml" />
     <None Include="Scripts\whiteboard\jquery-1.6.4-vsdoc.js" />
     <Content Include="Pictures\1.png" />
     <Content Include="Pictures\ali.jpg" />

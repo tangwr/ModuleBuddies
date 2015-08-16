@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="ModulesDBConnectionString-Web.config Connection String" description="ModulesDBConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=yq6ulqknjf.database.windows.net,1433;Initial Catalog=ModulesDB;User ID=rstyle;Password=Zxcv2345" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Tang\\Desktop\\TangWR\\ModuleBuddiesASP\\ModuleBuddiesASP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ModulesDBConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\TWR\\Documents\\GitHub\\ModuleBuddies\\ModuleBuddiesASP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ModulesDBConnectionString']/@connectionString" />
   </parameter>
 </parameters>

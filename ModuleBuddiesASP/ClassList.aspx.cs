@@ -15,11 +15,12 @@ namespace ModuleBuddiesASP
         HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
         HelperClasses.CourseID course = new HelperClasses.CourseID();
         HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
-
+        /*
         List<String> ListModCode = new List<String>();
         List<String> ListModName = new List<String>();
         List<String> ListCourseSem = new List<String>();
         List<String> ListAcadYear = new List<String>();
+         * */
         protected void Page_Load(object sender, EventArgs e)
         {
      
@@ -29,16 +30,18 @@ namespace ModuleBuddiesASP
             {
                 Response.Redirect("Home.aspx");
             }
-
+            /*
             ListModCode = modInfo.getModInfo("CourseCode");
             ListModName = modInfo.getModInfo("CourseName");
             ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
             ListAcadYear = modInfo.getModInfo("CourseAcadYear");
-          
+            */
 
             /* from test friends */
 
             //groupListDiv.Controls.Add(new LiteralControl() { Text = moduleFriendList() });
+            List<String> ListModName = new List<String>();
+            ListModName = modInfo.getModInfo("CourseName");
 
             int value = moduleDropDownList.Items.Count;
 
@@ -55,6 +58,8 @@ namespace ModuleBuddiesASP
         {
             List<String> nameList = new List<String>();
             List<String> studIdList = new List<String>();
+            List<String> ListModCode = new List<String>();
+
             ListModCode = modInfo.getModInfo("CourseCode");
 
             int index = moduleDropDownList.SelectedIndex;

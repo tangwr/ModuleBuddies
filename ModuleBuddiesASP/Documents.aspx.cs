@@ -15,11 +15,12 @@ namespace ModuleBuddiesASP
         HelperClasses.ModuleInfo modInfo = new HelperClasses.ModuleInfo();
         HelperClasses.CourseID course = new HelperClasses.CourseID();
         HelperClasses.IvleUserInfo userInfo = new HelperClasses.IvleUserInfo();
-
+        /*
         List<String> ListModCode = new List<String>();
         List<String> ListModName = new List<String>();
         List<String> ListCourseSem = new List<String>();
         List<String> ListAcadYear = new List<String>();
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
             HelperClasses.Token myToken = new HelperClasses.Token();
@@ -28,12 +29,12 @@ namespace ModuleBuddiesASP
             {
                 Response.Redirect("Home.aspx");
             }
-
+            /*
             ListModCode = modInfo.getModInfo("CourseCode");
             ListModName = modInfo.getModInfo("CourseName");
             ListCourseSem = modInfo.getSemNum(modInfo.getModInfo("CourseSemester"));
             ListAcadYear = modInfo.getModInfo("CourseAcadYear");
-
+            */
             documentListDiv.Controls.Add(new LiteralControl() { Text = getDocumentListHtml() });
         }
 
